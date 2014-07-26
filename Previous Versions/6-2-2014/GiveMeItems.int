@@ -1,0 +1,3 @@
+[Public]
+Object=(Name=GiveMeItems.GiveMeItems,Class=Class,MetaClass=Engine.Mutator,Description="Give Me Items!!!")
+Object=(Name=GiveMeItems.GMIMenuItem,Class=Class,MetaClass=UMenu.UMenuModMenuItem,Description="Give Me Items!!! Configuration")
