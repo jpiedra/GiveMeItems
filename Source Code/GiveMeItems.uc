@@ -62,29 +62,29 @@ return true;
 
 defaultproperties
 {
-     destroyTime=40
-     ItemChoice(0)="exu.shockflare"
-     ItemChoice(1)="exu.shockflare"
-     ItemChoice(2)="exu.shockflare"
-     ItemChoice(3)="exu.plasmasprayerflare"
-     ItemChoice(4)="exu.plasmasprayerflare"
-     ItemChoice(5)="exu.plasmasprayerflare"
-     ItemChoice(6)="botpack.healthvial"
-     ItemChoice(7)="botpack.healthvial"
-     ItemChoice(8)="botpack.healthvial"
-     ItemChoice(9)="exu.blastbapes"
-     ItemChoice(10)="exu.fuckercola"
-     ItemChoice(11)="exu.fuckercola"
-     ItemChoice(12)="botpack.healthvial"
-     ItemChoice(13)="botpack.healthvial"
-     ItemChoice(14)="botpack.healthvial"
-     ItemChoice(15)="botpack.healthvial"
-     ItemChoice(16)="exu.hellgun"
-     ItemChoice(17)="exu.hellgun"
-     ItemChoice(18)="exu.fuckercola"
-     ItemChoice(19)="exu.fuckercola"
-     ItemChoice(20)="exu.fuckercola"
-     ItemChoice(21)="exu.blastbapes"
-     ItemChoice(22)="botpack.healthvial"
-     ItemChoice(23)="botpack.healthvial"
+     	destroyTime=20
+	ItemChoice[0]=unreali.bandages
+	ItemChoice[1]=unreali.bandages
+	ItemChoice[2]=unreali.bandages
+	ItemChoice[3]=unreali.bandages
+	ItemChoice[4]=unreali.bandages
+	ItemChoice[5]=unreali.bandages
+	ItemChoice[6]=unreali.bandages
+	ItemChoice[7]=unreali.bandages
+	ItemChoice[8]=unreali.bandages
+	ItemChoice[9]=unreali.bandages
+	ItemChoice[10]=unreali.bandages
+	ItemChoice[11]=unreali.bandages
+	ItemChoice[12]=unreali.bandages
+	ItemChoice[13]=unreali.bandages
+	ItemChoice[14]=unreali.bandages
+	ItemChoice[15]=unreali.bandages
+	ItemChoice[16]=unreali.bandages
+	ItemChoice[17]=unreali.bandages
+	ItemChoice[18]=unreali.bandages
+	ItemChoice[19]=unreali.bandages
+	ItemChoice[20]=unreali.bandages
+	ItemChoice[21]=unreali.bandages
+	ItemChoice[22]=unreali.bandages
+	ItemChoice[23]=unreali.bandages
 }
