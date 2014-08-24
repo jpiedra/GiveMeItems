@@ -1,0 +1,347 @@
+//=============================================================================
+// GiveMeItems.
+//=============================================================================
+class GiveMeItems expands Mutator config(GiveMeItems);
+
+var() config int destroyTime;
+var() config int customCounter;
+var() config String ItemChoice[24];
+var() config String CustomChoice[255];
+var class<Inventory> IVar[24];
+var int i;
+var float Selection;
+
+
+function PreBeginPlay()
+{
+ 	log("~GiveMeItems, by JPZ - 4/2/2014~");
+	log("Initializing Items to load for Monsters...");
+
+	//see below.
+	SetTimer(destroyTime, true);
+	
+
+	for (i = 0; i < 24; i++){
+		IVar[i] = class<Inventory>(DynamicLoadObject(ItemChoice[i], class'Class'));				
+		if (IVar[i] == None){
+				log("GiveMeItems: Invalid Class for ItemChoice["$i$"]");
+				IVar[i] = class'unreali.bandages';} 
+		else {
+				IVar[i].default.event = 'GMIMutDeleteMe';}
+		}
+
+   
+}
+
+
+function Timer(){
+
+	local inventory inv;
+
+	foreach allactors(class'inventory', inv){
+		if (inv.event == 'GMIMutDeleteMe' && inv.IsInState('pickup')){
+			inv.destroy();}
+		}
+}
+
+function bool CheckReplacement(Actor Other, out byte bSuperRelevant) 
+{ 
+		
+	Selection = Rand(24);
+		
+	if (Selection < 24){
+    	 if(Other.IsA('ScriptedPawn') &&  ScriptedPawn(Other).DropWhenKilled == None && IVar[Selection] != None)
+    	 { 
+       			
+			ScriptedPawn(Other).DropWhenKilled = IVar[Selection];
+	 	 } 
+ 	}
+
+
+return true; 
+            
+}
+
+defaultproperties
+{
+     destroyTime=60
+     ItemChoice(0)="botpack.shockcore"
+     ItemChoice(1)="botpack.translocator"
+     ItemChoice(2)="botpack.sniperrifle"
+     ItemChoice(3)="botpack.bulletbox"
+     ItemChoice(4)="botpack.minigun2"
+     ItemChoice(5)="botpack.chainsaw"
+     ItemChoice(6)="botpack.medbox"
+     ItemChoice(7)="botpack.ut_shieldbelt"
+     ItemChoice(8)="botpack.healthpack"
+     ItemChoice(9)="botpack.healthpack"
+     ItemChoice(10)="botpack.rocketpack"
+     ItemChoice(11)="botpack.minigun2"
+     ItemChoice(12)="botpack.bulletbox"
+     ItemChoice(13)="botpack.shockcore"
+     ItemChoice(14)="botpack.ut_invisibility"
+     ItemChoice(15)="botpack.bioammo"
+     ItemChoice(16)="botpack.healthpack"
+     ItemChoice(17)="botpack.ut_jumpboots"
+     ItemChoice(18)="botpack.thighpads"
+     ItemChoice(19)="botpack.rifleshell"
+     ItemChoice(20)="botpack.healthpack"
+     ItemChoice(21)="botpack.doubleenforcer"
+     ItemChoice(22)="botpack.miniammo"
+     ItemChoice(23)="botpack.thighpads"
+     CustomChoice(0)=" "
+     CustomChoice(1)=" "
+     CustomChoice(2)=" "
+     CustomChoice(3)=" "
+     CustomChoice(4)=" "
+     CustomChoice(5)=" "
+     CustomChoice(6)=" "
+     CustomChoice(7)=" "
+     CustomChoice(8)=" "
+     CustomChoice(9)=" "
+     CustomChoice(10)=" "
+     CustomChoice(11)=" "
+     CustomChoice(12)=" "
+     CustomChoice(13)=" "
+     CustomChoice(14)=" "
+     CustomChoice(15)=" "
+     CustomChoice(16)=" "
+     CustomChoice(17)=" "
+     CustomChoice(18)=" "
+     CustomChoice(19)=" "
+     CustomChoice(20)=" "
+     CustomChoice(21)=" "
+     CustomChoice(22)=" "
+     CustomChoice(23)=" "
+     CustomChoice(24)=" "
+     CustomChoice(25)=" "
+     CustomChoice(26)=" "
+     CustomChoice(27)=" "
+     CustomChoice(28)=" "
+     CustomChoice(29)=" "
+     CustomChoice(30)=" "
+     CustomChoice(31)=" "
+     CustomChoice(32)=" "
+     CustomChoice(33)=" "
+     CustomChoice(34)=" "
+     CustomChoice(35)=" "
+     CustomChoice(36)=" "
+     CustomChoice(37)=" "
+     CustomChoice(38)=" "
+     CustomChoice(39)=" "
+     CustomChoice(40)=" "
+     CustomChoice(41)=" "
+     CustomChoice(42)=" "
+     CustomChoice(43)=" "
+     CustomChoice(44)=" "
+     CustomChoice(45)=" "
+     CustomChoice(46)=" "
+     CustomChoice(47)=" "
+     CustomChoice(48)=" "
+     CustomChoice(49)=" "
+     CustomChoice(50)=" "
+     CustomChoice(51)=" "
+     CustomChoice(52)=" "
+     CustomChoice(53)=" "
+     CustomChoice(54)=" "
+     CustomChoice(55)=" "
+     CustomChoice(56)=" "
+     CustomChoice(57)=" "
+     CustomChoice(58)=" "
+     CustomChoice(59)=" "
+     CustomChoice(60)=" "
+     CustomChoice(61)=" "
+     CustomChoice(62)=" "
+     CustomChoice(63)=" "
+     CustomChoice(64)=" "
+     CustomChoice(65)=" "
+     CustomChoice(66)=" "
+     CustomChoice(67)=" "
+     CustomChoice(68)=" "
+     CustomChoice(69)=" "
+     CustomChoice(70)=" "
+     CustomChoice(71)=" "
+     CustomChoice(72)=" "
+     CustomChoice(73)=" "
+     CustomChoice(74)=" "
+     CustomChoice(75)=" "
+     CustomChoice(76)=" "
+     CustomChoice(77)=" "
+     CustomChoice(78)=" "
+     CustomChoice(79)=" "
+     CustomChoice(80)=" "
+     CustomChoice(81)=" "
+     CustomChoice(82)=" "
+     CustomChoice(83)=" "
+     CustomChoice(84)=" "
+     CustomChoice(85)=" "
+     CustomChoice(86)=" "
+     CustomChoice(87)=" "
+     CustomChoice(88)=" "
+     CustomChoice(89)=" "
+     CustomChoice(90)=" "
+     CustomChoice(91)=" "
+     CustomChoice(92)=" "
+     CustomChoice(93)=" "
+     CustomChoice(94)=" "
+     CustomChoice(95)=" "
+     CustomChoice(96)=" "
+     CustomChoice(97)=" "
+     CustomChoice(98)=" "
+     CustomChoice(99)=" "
+     CustomChoice(100)=" "
+     CustomChoice(101)=" "
+     CustomChoice(102)=" "
+     CustomChoice(103)=" "
+     CustomChoice(104)=" "
+     CustomChoice(105)=" "
+     CustomChoice(106)=" "
+     CustomChoice(107)=" "
+     CustomChoice(108)=" "
+     CustomChoice(109)=" "
+     CustomChoice(110)=" "
+     CustomChoice(111)=" "
+     CustomChoice(112)=" "
+     CustomChoice(113)=" "
+     CustomChoice(114)=" "
+     CustomChoice(115)=" "
+     CustomChoice(116)=" "
+     CustomChoice(117)=" "
+     CustomChoice(118)=" "
+     CustomChoice(119)=" "
+     CustomChoice(120)=" "
+     CustomChoice(121)=" "
+     CustomChoice(122)=" "
+     CustomChoice(123)=" "
+     CustomChoice(124)=" "
+     CustomChoice(125)=" "
+     CustomChoice(126)=" "
+     CustomChoice(127)=" "
+     CustomChoice(128)=" "
+     CustomChoice(129)=" "
+     CustomChoice(130)=" "
+     CustomChoice(131)=" "
+     CustomChoice(132)=" "
+     CustomChoice(133)=" "
+     CustomChoice(134)=" "
+     CustomChoice(135)=" "
+     CustomChoice(136)=" "
+     CustomChoice(137)=" "
+     CustomChoice(138)=" "
+     CustomChoice(139)=" "
+     CustomChoice(140)=" "
+     CustomChoice(141)=" "
+     CustomChoice(142)=" "
+     CustomChoice(143)=" "
+     CustomChoice(144)=" "
+     CustomChoice(145)=" "
+     CustomChoice(146)=" "
+     CustomChoice(147)=" "
+     CustomChoice(148)=" "
+     CustomChoice(149)=" "
+     CustomChoice(150)=" "
+     CustomChoice(151)=" "
+     CustomChoice(152)=" "
+     CustomChoice(153)=" "
+     CustomChoice(154)=" "
+     CustomChoice(155)=" "
+     CustomChoice(156)=" "
+     CustomChoice(157)=" "
+     CustomChoice(158)=" "
+     CustomChoice(159)=" "
+     CustomChoice(160)=" "
+     CustomChoice(161)=" "
+     CustomChoice(162)=" "
+     CustomChoice(163)=" "
+     CustomChoice(164)=" "
+     CustomChoice(165)=" "
+     CustomChoice(166)=" "
+     CustomChoice(167)=" "
+     CustomChoice(168)=" "
+     CustomChoice(169)=" "
+     CustomChoice(170)=" "
+     CustomChoice(171)=" "
+     CustomChoice(172)=" "
+     CustomChoice(173)=" "
+     CustomChoice(174)=" "
+     CustomChoice(175)=" "
+     CustomChoice(176)=" "
+     CustomChoice(177)=" "
+     CustomChoice(178)=" "
+     CustomChoice(179)=" "
+     CustomChoice(180)=" "
+     CustomChoice(181)=" "
+     CustomChoice(182)=" "
+     CustomChoice(183)=" "
+     CustomChoice(184)=" "
+     CustomChoice(185)=" "
+     CustomChoice(186)=" "
+     CustomChoice(187)=" "
+     CustomChoice(188)=" "
+     CustomChoice(189)=" "
+     CustomChoice(190)=" "
+     CustomChoice(191)=" "
+     CustomChoice(192)=" "
+     CustomChoice(193)=" "
+     CustomChoice(194)=" "
+     CustomChoice(195)=" "
+     CustomChoice(196)=" "
+     CustomChoice(197)=" "
+     CustomChoice(198)=" "
+     CustomChoice(199)=" "
+     CustomChoice(200)=" "
+     CustomChoice(201)=" "
+     CustomChoice(202)=" "
+     CustomChoice(203)=" "
+     CustomChoice(204)=" "
+     CustomChoice(205)=" "
+     CustomChoice(206)=" "
+     CustomChoice(207)=" "
+     CustomChoice(208)=" "
+     CustomChoice(209)=" "
+     CustomChoice(210)=" "
+     CustomChoice(211)=" "
+     CustomChoice(212)=" "
+     CustomChoice(213)=" "
+     CustomChoice(214)=" "
+     CustomChoice(215)=" "
+     CustomChoice(216)=" "
+     CustomChoice(217)=" "
+     CustomChoice(218)=" "
+     CustomChoice(219)=" "
+     CustomChoice(220)=" "
+     CustomChoice(221)=" "
+     CustomChoice(222)=" "
+     CustomChoice(223)=" "
+     CustomChoice(224)=" "
+     CustomChoice(225)=" "
+     CustomChoice(226)=" "
+     CustomChoice(227)=" "
+     CustomChoice(228)=" "
+     CustomChoice(229)=" "
+     CustomChoice(230)=" "
+     CustomChoice(231)=" "
+     CustomChoice(232)=" "
+     CustomChoice(233)=" "
+     CustomChoice(234)=" "
+     CustomChoice(235)=" "
+     CustomChoice(236)=" "
+     CustomChoice(237)=" "
+     CustomChoice(238)=" "
+     CustomChoice(239)=" "
+     CustomChoice(240)=" "
+     CustomChoice(241)=" "
+     CustomChoice(242)=" "
+     CustomChoice(243)=" "
+     CustomChoice(244)=" "
+     CustomChoice(245)=" "
+     CustomChoice(246)=" "
+     CustomChoice(247)=" "
+     CustomChoice(248)=" "
+     CustomChoice(249)=" "
+     CustomChoice(250)=" "
+     CustomChoice(251)=" "
+     CustomChoice(252)=" "
+     CustomChoice(253)=" "
+     CustomChoice(254)=" "
+}
