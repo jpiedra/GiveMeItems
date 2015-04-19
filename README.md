@@ -1,4 +1,4 @@
-This repository contains all files constituting the GiveMeItems mutator. 
+This repository contains all files constituting the GiveMeItems mutator. This is a mutator to be used in conjunction with any Unreal Tournament mutators/gametypes where ScriptedPawns are used; GiveMeItems will cause the monsters in these games to drop the specified items upon death. 
 
 Copies of the source code for these files will be shared, so that examination of the code comprising this project can be done without use of the UnrealScript IDE (UnrealEd). 
 
