@@ -3,8 +3,7 @@
 //=============================================================================
 class GMIConfigWindow expands UWindowFramedWindow;
 
-function BeginPlay()
-{
+function BeginPlay() {
 
 Super.BeginPlay();
 //Set the title of the Framed Window
@@ -17,12 +16,11 @@ Super.BeginPlay();
 }
 
 
-function Created()
-{
-  Super.Created();
-  SetSize(512, 512); 
-  WinLeft = (Root.WinWidth - WinWidth) / 2;
-  WinTop = (Root.WinHeight - WinHeight) / 2;
+function Created() {
+  	Super.Created();
+  	SetSize(512, 512); 
+  	WinLeft = (Root.WinWidth - WinWidth) / 2;
+  	WinTop = (Root.WinHeight - WinHeight) / 2;
 }
 
 defaultproperties
