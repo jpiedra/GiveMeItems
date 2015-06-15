@@ -4,14 +4,9 @@
 class GMIConfigWindow expands UWindowFramedWindow;
 
 function BeginPlay() {
-
-Super.BeginPlay();
-//Set the title of the Framed Window
+	Super.BeginPlay();
 	WindowTitle = "Configure GiveMeItems!";
-
-//The class of the content
 	ClientClass = class'GMIClientWindow';
-//Make the Framed Window resizable
 	bSizable = false;
 }
 
