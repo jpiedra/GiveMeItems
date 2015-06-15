@@ -7,14 +7,12 @@ var UWindowSmallCloseButton CloseButton;
 var UWindowLabelControl Credits;
 var UWindowHSliderControl setDestroyTime;
 
-function Paint(Canvas C, float X, float Y)
-{
+function Paint(Canvas C, float X, float Y) {
 	Super.Paint(C, X, Y);
 	DrawStretchedTexture(C, 0, 0, WinWidth, WinHeight, Texture'GiveMeItems.GMIBackGround');
 }
 
-function Created()
-{
+function Created() {
 	SetSize(480, 480);
 	CloseButton = UWindowSmallCloseButton(CreateControl(class'UWindowSmallCloseButton', WinWidth-23, WinHeight-23, 48, 16));
 	CloseButton.SetText( "Close" );
@@ -34,8 +32,7 @@ function Created()
 }
 
 
-function Notify(UWindowDialogControl C, byte E){
-	
+function Notify(UWindowDialogControl C, byte E) {
 	switch(E) {
 		case DE_Change:
 			switch(C) {
@@ -43,10 +40,9 @@ function Notify(UWindowDialogControl C, byte E){
 				setDestroyTIme.SetText("Remove drops every " $ int(setDestroyTime.Value) $ " seconds");
 				class'GiveMeItems.GiveMeItems'.default.destroyTime=setDestroyTime.Value;
 				class'GiveMeItems.GiveMeItems'.static.StaticSaveConfig();
-				break;}
-		}
-			
-
+				break;
+			}
+	}
 }
 
 defaultproperties
