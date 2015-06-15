@@ -12,54 +12,44 @@ var int i;
 var float Selection;
 
 
-function PreBeginPlay()
-{
+function PreBeginPlay() {
  	log("~GiveMeItems, by JPZ - 4/2/2014~");
 	log("Initializing Items to load for Monsters...");
 
 	//see below.
 	SetTimer(destroyTime, true);
 	
-
 	for (i = 0; i < 24; i++){
 		IVar[i] = class<Inventory>(DynamicLoadObject(ItemChoice[i], class'Class'));				
-		if (IVar[i] == None){
-				log("GiveMeItems: Invalid Class for ItemChoice["$i$"]");
-				IVar[i] = class'unreali.bandages';} 
-		else {
-				IVar[i].default.event = 'GMIMutDeleteMe';}
+		if (IVar[i] == None) {
+			log("GiveMeItems: Invalid Class for ItemChoice["$i$"]");
+			IVar[i] = class'unreali.bandages';
+		} else {
+			IVar[i].default.event = 'GMIMutDeleteMe';
 		}
-
-   
+	}
 }
 
 
-function Timer(){
-
+function Timer() {
 	local inventory inv;
 
 	foreach allactors(class'inventory', inv){
-		if (inv.event == 'GMIMutDeleteMe' && inv.IsInState('pickup')){
-			inv.destroy();}
+		if (inv.event == 'GMIMutDeleteMe' && inv.IsInState('pickup')) {
+			inv.destroy();
 		}
+	}
 }
 
-function bool CheckReplacement(Actor Other, out byte bSuperRelevant) 
-{ 
-		
+function bool CheckReplacement(Actor Other, out byte bSuperRelevant) { 
 	Selection = Rand(24);
 		
-	if (Selection < 24){
-    	 if(Other.IsA('ScriptedPawn') &&  ScriptedPawn(Other).DropWhenKilled == None && IVar[Selection] != None)
-    	 { 
-       			
-			ScriptedPawn(Other).DropWhenKilled = IVar[Selection];
-	 	 } 
+	if (Selection < 24) {
+    		if(Other.IsA('ScriptedPawn') &&  ScriptedPawn(Other).DropWhenKilled == None && IVar[Selection] != None) { 
+       			ScriptedPawn(Other).DropWhenKilled = IVar[Selection];
+	 	} 
  	}
-
-
-return true; 
-            
+	return true; 
 }
 
 defaultproperties
