@@ -24,8 +24,7 @@ function Paint(Canvas C, float X, float Y)
 	DrawStretchedTexture(C, 0, 0, WinWidth, WinHeight, Texture'GiveMeItems.GMIBackGround');
 }
 
-function Created()
-{
+function Created() {
 	SetSize(480, 480);
 	CloseButton = UWindowSmallCloseButton(CreateControl(class'UWindowSmallCloseButton', WinWidth-23, WinHeight-23, 48, 1));
 	CloseButton.SetText( "Close" );
@@ -40,7 +39,7 @@ function Created()
 	y = 1;
 	yb = 20;
 
-	for (i = 0; i < 6; i++){
+	for (i = 0; i < 6; i++) {
 	
 		WeaponControl_B[i] = UWindowComboControl(CreateControl(class'UWindowComboControl', 10, (y * 35) - 20, 230, 1));
 		WeaponControl_B[i].SetText("Enter Item #" $ i+13);
@@ -82,7 +81,7 @@ function Created()
 
 	y = 1;
 
-	for (i = 6; i < 12; i++){
+	for (i = 6; i < 12; i++) {
 	
 		WeaponControl_B[i] = UWindowComboControl(CreateControl(class'UWindowComboControl', 265, (y * 35) - 20, 230, 1));
 		WeaponControl_B[i].SetText("Enter Item #" $ i+13);
@@ -127,7 +126,7 @@ function Created()
 
 
 
-function bool Is_Default(string s){
+function bool Is_Default(string s) {
 	
 	if (s == "botpack.translocator" ||
 		s == "botpack.chainsaw" ||
@@ -169,7 +168,7 @@ function bool Is_Default(string s){
 
 
 
-function bool process_Custom(string s){ //returns false if it didn't process anything, true if it did
+function bool process_Custom(string s) { //returns false if it didn't process anything, true if it did
 
 	local int i;
 	local int j;
@@ -177,11 +176,11 @@ function bool process_Custom(string s){ //returns false if it didn't process any
 	isDuplicate = false;
 
 	//check if the counter has been tampered with...
-	if (class'GiveMeItems.GiveMeItems'.default.customCounter < 0 || class'GiveMeItems.GiveMeItems'.default.customCounter > 254){		
+	if (class'GiveMeItems.GiveMeItems'.default.customCounter < 0 || class'GiveMeItems.GiveMeItems'.default.customCounter > 254) {		
 		//reset counter to 0, then: process every item until the last valid value.
 		//where-ever that processing ends, is the value of the counter. 
 		j = 0;
-		while(class<Inventory>(DynamicLoadObject(class'GiveMeItems.GiveMeItems'.default.CustomChoice[j], class'Class')) != None && j < 255){
+		while(class<Inventory>(DynamicLoadObject(class'GiveMeItems.GiveMeItems'.default.CustomChoice[j], class'Class')) != None && j < 255) {
 			j++;
 		}
 		class'GiveMeItems.GiveMeItems'.default.customCounter = j;
@@ -189,17 +188,17 @@ function bool process_Custom(string s){ //returns false if it didn't process any
 
 	//check if counter is maxed out, as in it is 254, the last possible value.
 	//if so, start over at 0.
-	if 	(class'GiveMeItems.GiveMeItems'.default.customCounter == 254) 
+	if (class'GiveMeItems.GiveMeItems'.default.customCounter == 254) 
 		class'GiveMeItems.GiveMeItems'.default.customCounter = 0;
 
 	//check to see if it is a duplicate
-	for (i = 0; i < class'GiveMeItems.GiveMeItems'.default.customCounter; i++){
+	for (i = 0; i < class'GiveMeItems.GiveMeItems'.default.customCounter; i++) {
 		if (class'GiveMeItems.GiveMeItems'.default.CustomChoice[i] == s){
 			isDuplicate = true;
 		}	
 	}
 	
-	if (isDuplicate){
+	if (isDuplicate) {
 		return false;
 	} else {
 		add_Custom(s);
@@ -208,13 +207,13 @@ function bool process_Custom(string s){ //returns false if it didn't process any
 
 }
 
-function add_Custom(string s){
+function add_Custom(string s) {
 		class'GiveMeItems.GiveMeItems'.default.CustomChoice[class'GiveMeItems.GiveMeItems'.default.customCounter] = s;
 		class'GiveMeItems.GiveMeItems'.default.customCounter += 1;
 		StaticSaveConfig();
 }
 
-function bool droplist_isDuplicate(string s){
+function bool droplist_isDuplicate(string s) {
 
 	local int i;
 	local int j;
@@ -222,11 +221,11 @@ function bool droplist_isDuplicate(string s){
 	isDuplicate = false;
 
 	//check if the counter has been tampered with...
-	if (class'GiveMeItems.GiveMeItems'.default.customCounter < 0 || class'GiveMeItems.GiveMeItems'.default.customCounter > 254){		
+	if (class'GiveMeItems.GiveMeItems'.default.customCounter < 0 || class'GiveMeItems.GiveMeItems'.default.customCounter > 254) {		
 		//reset counter to 0, then: process every item until the last valid value.
 		//where-ever that processing ends, is the value of the counter. 
 		j = 0;
-		while(class<Inventory>(DynamicLoadObject(class'GiveMeItems.GiveMeItems'.default.CustomChoice[j], class'Class')) != None && j < 255){
+		while(class<Inventory>(DynamicLoadObject(class'GiveMeItems.GiveMeItems'.default.CustomChoice[j], class'Class')) != None && j < 255) {
 			j++;
 		}
 		class'GiveMeItems.GiveMeItems'.default.customCounter = j;
@@ -234,7 +233,7 @@ function bool droplist_isDuplicate(string s){
 
 	//check if counter is maxed out, as in it is 254, the last possible value.
 	//if so, start over at 0.
-	if 	(class'GiveMeItems.GiveMeItems'.default.customCounter == 254) 
+	if (class'GiveMeItems.GiveMeItems'.default.customCounter == 254) 
 		class'GiveMeItems.GiveMeItems'.default.customCounter = 0;
 
 	//check to see if it is a duplicate
@@ -248,7 +247,7 @@ function bool droplist_isDuplicate(string s){
 
 }
 
-function Notify(UWindowDialogControl C, byte E){
+function Notify(UWindowDialogControl C, byte E) {
 
 local int i_C;
 local int i;
@@ -257,7 +256,7 @@ local int count;
 local string pass[12];
 local class<Weapon> WeaponHolder[12];
 
-for (count = 0; count < 12; count++){
+for (count = 0; count < 12; count++) {
 	pass[count] = WeaponControl_B[count].GetValue();
 }
 
