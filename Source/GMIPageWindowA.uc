@@ -18,14 +18,12 @@ var UWindowComboControl WeaponControl_A[12];
 var UWindowSmallButton Randomize_D;
 var UWindowSmallButton Clear_Customs;
 
-function Paint(Canvas C, float X, float Y)
-{
+function Paint(Canvas C, float X, float Y) {
 	Super.Paint(C, X, Y);
 	DrawStretchedTexture(C, 0, 0, WinWidth, WinHeight, Texture'GiveMeItems.GMIBackGround');
 }
 
-function Created()
-{
+function Created() {
 	SetSize(480, 480);
 	CloseButton = UWindowSmallCloseButton(CreateControl(class'UWindowSmallCloseButton', WinWidth-23, WinHeight-23, 48, 1));
 	CloseButton.SetText( "Close" );
@@ -40,7 +38,7 @@ function Created()
 	y = 1;
 	yb = 20;
 
-	for (i = 0; i < 6; i++){
+	for (i = 0; i < 6; i++) {
 	
 		WeaponControl_A[i] = UWindowComboControl(CreateControl(class'UWindowComboControl', 10, (y * 35) - 20, 230, 1));
 		WeaponControl_A[i].SetText("Enter Item #" $ i+1);
@@ -81,7 +79,7 @@ function Created()
 
 	y = 1;
 
-	for (i = 6; i < 12; i++){
+	for (i = 6; i < 12; i++) {
 	
 		WeaponControl_A[i] = UWindowComboControl(CreateControl(class'UWindowComboControl', 265, (y * 35) - 20, 230, 1));
 		WeaponControl_A[i].SetText("Enter Item #" $ i+1);
@@ -124,7 +122,7 @@ function Created()
 	Super.Created();
 }
 
-function bool Is_Default(string s){
+function bool Is_Default(string s) {
 	
 	if (s == "botpack.translocator" ||
 		s == "botpack.chainsaw" ||
@@ -165,7 +163,7 @@ function bool Is_Default(string s){
 }
 
 
-function bool process_Custom(string s){ //returns false if it didn't process anything, true if it did
+function bool process_Custom(string s) { //returns false if it didn't process anything, true if it did
 
 	local int i;
 	local int j;
@@ -204,13 +202,13 @@ function bool process_Custom(string s){ //returns false if it didn't process any
 
 }
 
-function add_Custom(string s){
+function add_Custom(string s) {
 		class'GiveMeItems.GiveMeItems'.default.CustomChoice[class'GiveMeItems.GiveMeItems'.default.customCounter] = s;
 		class'GiveMeItems.GiveMeItems'.default.customCounter += 1;
 		StaticSaveConfig();
 }
 
-function bool droplist_isDuplicate(string s){
+function bool droplist_isDuplicate(string s) {
 
 	local int i;
 	local int j;
@@ -230,7 +228,7 @@ function bool droplist_isDuplicate(string s){
 
 	//check if counter is maxed out, as in it is 254, the last possible value.
 	//if so, start over at 0.
-	if 	(class'GiveMeItems.GiveMeItems'.default.customCounter == 254) 
+	if (class'GiveMeItems.GiveMeItems'.default.customCounter == 254) 
 		class'GiveMeItems.GiveMeItems'.default.customCounter = 0;
 
 	//check to see if it is a duplicate
@@ -241,10 +239,9 @@ function bool droplist_isDuplicate(string s){
 	}
 	
 	return isDuplicate;
-
 }
 
-function Notify(UWindowDialogControl C, byte E){
+function Notify(UWindowDialogControl C, byte E) { 
 
 local int i_C;
 local int i;
